@@ -5,7 +5,9 @@
                 <div class="card">
                     <div class="card-header">Post Component</div>
                     <div class="card-body">
-                        I'm an post component.
+                        <p>I'm an post component.</p>
+                        <div>Job: {{ job }}</div>
+                        <br>
                         <div>Name: {{ name }}</div>
                         <div>Age: {{ age }}</div>
                         <div>Boolean: {{ boolean }}</div>
@@ -49,6 +51,11 @@ export default {
         },
         sayHi() {
             console.log('Hi');
+        }
+    },
+    computed: {
+        job() {
+            return this.name + ' doing some job';
         }
     }
 }

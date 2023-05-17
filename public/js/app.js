@@ -5339,6 +5339,11 @@ __webpack_require__.r(__webpack_exports__);
     sayHi: function sayHi() {
       console.log('Hi');
     }
+  },
+  computed: {
+    job: function job() {
+      return this.name + ' doing some job';
+    }
   }
 });
 
@@ -5391,7 +5396,7 @@ var render = function render() {
     staticClass: "card-header"
   }, [_vm._v("Post Component")]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
-  }, [_vm._v("\n                    I'm an post component.\n                    "), _c("div", [_vm._v("Name: " + _vm._s(_vm.name))]), _vm._v(" "), _c("div", [_vm._v("Age: " + _vm._s(_vm.age))]), _vm._v(" "), _c("div", [_vm._v("Boolean: " + _vm._s(_vm["boolean"]))]), _vm._v(" "), _c("div", [_vm._v("SomeNull: " + _vm._s(_vm.someNull))]), _vm._v(" "), _c("div", [_vm._v("Arr: " + _vm._s(_vm.arr))]), _vm._v(" "), _c("div", [_vm._v("SomeObj: " + _vm._s(_vm.someObj))]), _vm._v(" "), _c("SingleComponent"), _vm._v(" "), _c("single-component"), _vm._v(" "), _c("button", {
+  }, [_c("p", [_vm._v("I'm an post component.")]), _vm._v(" "), _c("div", [_vm._v("Job: " + _vm._s(_vm.job))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("div", [_vm._v("Name: " + _vm._s(_vm.name))]), _vm._v(" "), _c("div", [_vm._v("Age: " + _vm._s(_vm.age))]), _vm._v(" "), _c("div", [_vm._v("Boolean: " + _vm._s(_vm["boolean"]))]), _vm._v(" "), _c("div", [_vm._v("SomeNull: " + _vm._s(_vm.someNull))]), _vm._v(" "), _c("div", [_vm._v("Arr: " + _vm._s(_vm.arr))]), _vm._v(" "), _c("div", [_vm._v("SomeObj: " + _vm._s(_vm.someObj))]), _vm._v(" "), _c("SingleComponent"), _vm._v(" "), _c("single-component"), _vm._v(" "), _c("button", {
     on: {
       click: _vm.sayHello
     }
