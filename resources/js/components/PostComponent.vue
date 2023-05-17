@@ -6,6 +6,12 @@
                     <div class="card-header">Post Component</div>
                     <div class="card-body">
                         I'm an post component.
+                        <div>Name: {{ name }}</div>
+                        <div>Age: {{ age }}</div>
+                        <div>Boolean: {{ boolean }}</div>
+                        <div>SomeNull: {{ someNull }}</div>
+                        <div>Arr: {{ arr }}</div>
+                        <div>SomeObj: {{ someObj }}</div>
                         <SingleComponent></SingleComponent> <!-- include component in parent component with camel case notation -->
                         <single-component></single-component>
                     </div>
@@ -24,6 +30,16 @@ export default {
     },
     mounted() {
         console.log('Component mounted.')
+    },
+    data() {
+        return {
+            name: 'Vasja',
+            age: 20,
+            boolean: true,
+            someNull: null,
+            arr: [[], []],
+            someObj: {},
+        }
     }
 }
 </script>

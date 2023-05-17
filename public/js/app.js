@@ -5321,6 +5321,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log('Component mounted.');
+  },
+  data: function data() {
+    return {
+      name: 'Vasja',
+      age: 20,
+      "boolean": true,
+      someNull: null,
+      arr: [[], []],
+      someObj: {}
+    };
   }
 });
 
@@ -5373,7 +5383,7 @@ var render = function render() {
     staticClass: "card-header"
   }, [_vm._v("Post Component")]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
-  }, [_vm._v("\n                    I'm an post component.\n                    "), _c("SingleComponent"), _vm._v(" "), _c("single-component")], 1)])])])]);
+  }, [_vm._v("\n                    I'm an post component.\n                    "), _c("div", [_vm._v("Name: " + _vm._s(_vm.name))]), _vm._v(" "), _c("div", [_vm._v("Age: " + _vm._s(_vm.age))]), _vm._v(" "), _c("div", [_vm._v("Boolean: " + _vm._s(_vm["boolean"]))]), _vm._v(" "), _c("div", [_vm._v("SomeNull: " + _vm._s(_vm.someNull))]), _vm._v(" "), _c("div", [_vm._v("Arr: " + _vm._s(_vm.arr))]), _vm._v(" "), _c("div", [_vm._v("SomeObj: " + _vm._s(_vm.someObj))]), _vm._v(" "), _c("SingleComponent"), _vm._v(" "), _c("single-component")], 1)])])])]);
 };
 var staticRenderFns = [];
 render._withStripped = true;
