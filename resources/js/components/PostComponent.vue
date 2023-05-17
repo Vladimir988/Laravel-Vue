@@ -14,6 +14,8 @@
                         <div>SomeObj: {{ someObj }}</div>
                         <SingleComponent></SingleComponent> <!-- include component in parent component with camel case notation -->
                         <single-component></single-component>
+                        <button @click="sayHello">Hello</button>
+                        <button @click="sayHi">Hi</button>
                     </div>
                 </div>
             </div>
@@ -39,6 +41,14 @@ export default {
             someNull: null,
             arr: [[], []],
             someObj: {},
+        }
+    },
+    methods: {
+        sayHello() {
+            console.log('Hello');
+        },
+        sayHi() {
+            console.log('Hi');
         }
     }
 }
