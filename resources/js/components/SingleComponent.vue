@@ -3,9 +3,9 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Example Component</div>
+                    <div class="card-header">Single Component</div>
                     <div class="card-body">
-                        I'm an example component.
+                        I'm an single component.
                     </div>
                 </div>
             </div>
@@ -15,6 +15,7 @@
 
 <script>
 export default {
+    name: 'SingleComponent',
     mounted() {
         console.log('Component mounted.')
     }

@@ -6,6 +6,8 @@
                     <div class="card-header">Post Component</div>
                     <div class="card-body">
                         I'm an post component.
+                        <SingleComponent></SingleComponent> <!-- include component in parent component with camel case notation -->
+                        <single-component></single-component>
                     </div>
                 </div>
             </div>
@@ -14,7 +16,12 @@
 </template>
 
 <script>
+import SingleComponent from "./SingleComponent";
 export default {
+    name: 'PostComponent',
+    components: {
+        SingleComponent,
+    },
     mounted() {
         console.log('Component mounted.')
     }
