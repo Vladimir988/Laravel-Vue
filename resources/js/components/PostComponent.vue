@@ -5,23 +5,31 @@
                 <div class="card">
                     <div class="card-header">Post Component</div>
                     <div class="card-body">
-                        <p>I'm an post component.</p>
-                        <div>Job: {{ job }}</div>
-                        <br>
-                        <div>Name: {{ name }}</div>
-                        <div>Age: {{ age }}</div>
-                        <div>Boolean: {{ boolean }}</div>
-                        <div>SomeNull: {{ someNull }}</div>
-                        <div>Arr: {{ arr }}</div>
-                        <div>SomeObj: {{ someObj }}</div>
                         <SingleComponent></SingleComponent> <!-- include component in parent component with camel case notation -->
-                        <single-component></single-component>
                         <button @click="sayHello">Hello</button>
                         <button @click="sayHi">Hi</button>
                     </div>
                 </div>
             </div>
         </div>
+        <table class="table mt-5">
+            <thead>
+            <tr>
+                <th></th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Job</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="person in persons">
+                <th>{{ person.id }}</th>
+                <td>{{ person.name }}</td>
+                <td>{{ person.age }}</td>
+                <td>{{ person.job }}</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
 </template>
 
@@ -37,12 +45,26 @@ export default {
     },
     data() {
         return {
-            name: 'Vasja',
-            age: 20,
-            boolean: true,
-            someNull: null,
-            arr: [[], []],
-            someObj: {},
+            persons: [
+                {
+                    id: 1,
+                    name: 'Vasja',
+                    age: 20,
+                    job: 'coach',
+                },
+                {
+                    id: 2,
+                    name: 'Kolja',
+                    age: 12,
+                    job: 'rest',
+                },
+                {
+                    id: 3,
+                    name: 'Nastja',
+                    age: 31,
+                    job: 'doing something',
+                }
+            ]
         }
     },
     methods: {

@@ -5324,12 +5324,22 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      name: 'Vasja',
-      age: 20,
-      "boolean": true,
-      someNull: null,
-      arr: [[], []],
-      someObj: {}
+      persons: [{
+        id: 1,
+        name: 'Vasja',
+        age: 20,
+        job: 'coach'
+      }, {
+        id: 2,
+        name: 'Kolja',
+        age: 12,
+        job: 'rest'
+      }, {
+        id: 3,
+        name: 'Nastja',
+        age: 31,
+        job: 'doing something'
+      }]
     };
   },
   methods: {
@@ -5396,7 +5406,7 @@ var render = function render() {
     staticClass: "card-header"
   }, [_vm._v("Post Component")]), _vm._v(" "), _c("div", {
     staticClass: "card-body"
-  }, [_c("p", [_vm._v("I'm an post component.")]), _vm._v(" "), _c("div", [_vm._v("Job: " + _vm._s(_vm.job))]), _vm._v(" "), _c("br"), _vm._v(" "), _c("div", [_vm._v("Name: " + _vm._s(_vm.name))]), _vm._v(" "), _c("div", [_vm._v("Age: " + _vm._s(_vm.age))]), _vm._v(" "), _c("div", [_vm._v("Boolean: " + _vm._s(_vm["boolean"]))]), _vm._v(" "), _c("div", [_vm._v("SomeNull: " + _vm._s(_vm.someNull))]), _vm._v(" "), _c("div", [_vm._v("Arr: " + _vm._s(_vm.arr))]), _vm._v(" "), _c("div", [_vm._v("SomeObj: " + _vm._s(_vm.someObj))]), _vm._v(" "), _c("SingleComponent"), _vm._v(" "), _c("single-component"), _vm._v(" "), _c("button", {
+  }, [_c("SingleComponent"), _vm._v(" "), _c("button", {
     on: {
       click: _vm.sayHello
     }
@@ -5404,9 +5414,17 @@ var render = function render() {
     on: {
       click: _vm.sayHi
     }
-  }, [_vm._v("Hi")])], 1)])])])]);
+  }, [_vm._v("Hi")])], 1)])])]), _vm._v(" "), _c("table", {
+    staticClass: "table mt-5"
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.persons, function (person) {
+    return _c("tr", [_c("th", [_vm._v(_vm._s(person.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.age))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.job))])]);
+  }), 0)])]);
 };
-var staticRenderFns = [];
+var staticRenderFns = [function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Age")]), _vm._v(" "), _c("th", [_vm._v("Job")])])]);
+}];
 render._withStripped = true;
 
 
