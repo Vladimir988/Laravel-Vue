@@ -22,7 +22,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="person in personAgeFilter"> <!-- v-if="person.age > 20" -->
+            <tr v-for="person in persons"> <!-- v-if="person.age > 20" --> <!-- personAgeFilter -->
                 <th>{{ person.id }}</th>
                 <td>{{ person.name }}</td>
                 <td>{{ person.age }}</td>
@@ -40,43 +40,9 @@ export default {
     components: {
         SingleComponent,
     },
-    mounted() {
-        console.log('Component mounted.')
-    },
     data() {
         return {
-            persons: [
-                {
-                    id: 1,
-                    name: 'Vasja',
-                    age: 19,
-                    job: 'coach',
-                },
-                {
-                    id: 2,
-                    name: 'Kolja',
-                    age: 12,
-                    job: 'rest',
-                },
-                {
-                    id: 3,
-                    name: 'Nastja',
-                    age: 31,
-                    job: 'doing something',
-                },
-                {
-                    id: 4,
-                    name: 'Irina',
-                    age: 99,
-                    job: 'rider',
-                },
-                {
-                    id: 5,
-                    name: 'Enokentii',
-                    age: 88,
-                    job: 'doing nothing',
-                }
-            ]
+            persons: null
         }
     },
     methods: {
@@ -85,6 +51,21 @@ export default {
         },
         sayHi() {
             console.log('Hi');
+        },
+        getPersons() {
+            axios.get('/persons')
+                // .then(function (response) {
+                //     console.log(response.data);
+                // })
+                .then(response => {
+                    this.persons = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+                .finally({
+
+                });
         }
     },
     computed: {
@@ -96,6 +77,9 @@ export default {
                 return person.age > 20;
             });
         }
+    },
+    mounted() {
+        this.getPersons();
     }
 }
 </script>

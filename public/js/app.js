@@ -5319,37 +5319,9 @@ __webpack_require__.r(__webpack_exports__);
   components: {
     SingleComponent: _SingleComponent__WEBPACK_IMPORTED_MODULE_0__["default"]
   },
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  },
   data: function data() {
     return {
-      persons: [{
-        id: 1,
-        name: 'Vasja',
-        age: 19,
-        job: 'coach'
-      }, {
-        id: 2,
-        name: 'Kolja',
-        age: 12,
-        job: 'rest'
-      }, {
-        id: 3,
-        name: 'Nastja',
-        age: 31,
-        job: 'doing something'
-      }, {
-        id: 4,
-        name: 'Irina',
-        age: 99,
-        job: 'rider'
-      }, {
-        id: 5,
-        name: 'Enokentii',
-        age: 88,
-        job: 'doing nothing'
-      }]
+      persons: null
     };
   },
   methods: {
@@ -5358,6 +5330,18 @@ __webpack_require__.r(__webpack_exports__);
     },
     sayHi: function sayHi() {
       console.log('Hi');
+    },
+    getPersons: function getPersons() {
+      var _this = this;
+      axios.get('/persons')
+      // .then(function (response) {
+      //     console.log(response.data);
+      // })
+      .then(function (response) {
+        _this.persons = response.data;
+      })["catch"](function (error) {
+        console.log(error);
+      })["finally"]({});
     }
   },
   computed: {
@@ -5369,6 +5353,9 @@ __webpack_require__.r(__webpack_exports__);
         return person.age > 20;
       });
     }
+  },
+  mounted: function mounted() {
+    this.getPersons();
   }
 });
 
@@ -5388,7 +5375,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'SingleComponent',
   mounted: function mounted() {
-    console.log('Component mounted.');
+    console.log('Single component mounted !');
   }
 });
 
@@ -5431,7 +5418,7 @@ var render = function render() {
     }
   }, [_vm._v("Hi")])], 1)])])]), _vm._v(" "), _c("table", {
     staticClass: "table mt-5"
-  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.personAgeFilter, function (person) {
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.persons, function (person) {
     return _c("tr", [_c("th", [_vm._v(_vm._s(person.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.age))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.job))])]);
   }), 0)])]);
 };

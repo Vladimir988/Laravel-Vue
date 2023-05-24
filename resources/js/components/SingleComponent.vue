@@ -17,7 +17,7 @@
 export default {
     name: 'SingleComponent',
     mounted() {
-        console.log('Component mounted.')
+        console.log('Single component mounted !')
     }
 }
 </script>
