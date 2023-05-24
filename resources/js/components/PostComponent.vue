@@ -22,7 +22,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="person in persons">
+            <tr v-for="person in personAgeFilter"> <!-- v-if="person.age > 20" -->
                 <th>{{ person.id }}</th>
                 <td>{{ person.name }}</td>
                 <td>{{ person.age }}</td>
@@ -49,7 +49,7 @@ export default {
                 {
                     id: 1,
                     name: 'Vasja',
-                    age: 20,
+                    age: 19,
                     job: 'coach',
                 },
                 {
@@ -63,6 +63,18 @@ export default {
                     name: 'Nastja',
                     age: 31,
                     job: 'doing something',
+                },
+                {
+                    id: 4,
+                    name: 'Irina',
+                    age: 99,
+                    job: 'rider',
+                },
+                {
+                    id: 5,
+                    name: 'Enokentii',
+                    age: 88,
+                    job: 'doing nothing',
                 }
             ]
         }
@@ -78,6 +90,11 @@ export default {
     computed: {
         job() {
             return this.name + ' doing some job';
+        },
+        personAgeFilter() {
+            return this.persons.filter(function (person) {
+                return person.age > 20;
+            });
         }
     }
 }

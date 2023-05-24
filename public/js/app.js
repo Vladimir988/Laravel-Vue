@@ -5327,7 +5327,7 @@ __webpack_require__.r(__webpack_exports__);
       persons: [{
         id: 1,
         name: 'Vasja',
-        age: 20,
+        age: 19,
         job: 'coach'
       }, {
         id: 2,
@@ -5339,6 +5339,16 @@ __webpack_require__.r(__webpack_exports__);
         name: 'Nastja',
         age: 31,
         job: 'doing something'
+      }, {
+        id: 4,
+        name: 'Irina',
+        age: 99,
+        job: 'rider'
+      }, {
+        id: 5,
+        name: 'Enokentii',
+        age: 88,
+        job: 'doing nothing'
       }]
     };
   },
@@ -5353,6 +5363,11 @@ __webpack_require__.r(__webpack_exports__);
   computed: {
     job: function job() {
       return this.name + ' doing some job';
+    },
+    personAgeFilter: function personAgeFilter() {
+      return this.persons.filter(function (person) {
+        return person.age > 20;
+      });
     }
   }
 });
@@ -5416,7 +5431,7 @@ var render = function render() {
     }
   }, [_vm._v("Hi")])], 1)])])]), _vm._v(" "), _c("table", {
     staticClass: "table mt-5"
-  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.persons, function (person) {
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.personAgeFilter, function (person) {
     return _c("tr", [_c("th", [_vm._v(_vm._s(person.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.age))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.job))])]);
   }), 0)])]);
 };
