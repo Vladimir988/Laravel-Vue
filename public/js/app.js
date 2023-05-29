@@ -5354,7 +5354,8 @@ __webpack_require__.r(__webpack_exports__);
   name: 'IndexComponent',
   data: function data() {
     return {
-      people: null
+      people: null,
+      editPersonId: null
     };
   },
   methods: {
@@ -5363,6 +5364,12 @@ __webpack_require__.r(__webpack_exports__);
       axios.get('/api/people', {}).then(function (responce) {
         _this.people = responce.data;
       });
+    },
+    changeEditPersonId: function changeEditPersonId(id) {
+      this.editPersonId = id;
+    },
+    isEdit: function isEdit(id) {
+      return this.editPersonId === id;
     }
   },
   mounted: function mounted() {
@@ -5582,14 +5589,65 @@ var render = function render() {
     staticClass: "container mt-5"
   }, [_c("h2", [_vm._v("Index Component")]), _vm._v(" "), _c("table", {
     staticClass: "table mt-5"
-  }, [_vm._m(0), _vm._v(" "), _c("tbody", _vm._l(_vm.people, function (person) {
-    return _c("tr", [_c("th", [_vm._v(_vm._s(person.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.age))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.job))])]);
-  }), 0)])]);
+  }, [_vm._m(0), _vm._v(" "), _c("tbody", [_vm._l(_vm.people, function (person) {
+    return [_c("tr", [_c("th", [_vm._v(_vm._s(person.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.age))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.job))]), _vm._v(" "), _c("td", [_c("a", {
+      staticClass: "btn btn-success",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changeEditPersonId(person.id);
+        }
+      }
+    }, [_vm._v("Edit")])])]), _vm._v(" "), _c("tr", {
+      "class": _vm.isEdit(person.id) ? "" : "d-none"
+    }, [_c("th"), _vm._v(" "), _vm._m(1, true), _vm._v(" "), _vm._m(2, true), _vm._v(" "), _vm._m(3, true), _vm._v(" "), _c("td", [_c("a", {
+      staticClass: "btn btn-success",
+      attrs: {
+        href: "#"
+      },
+      on: {
+        click: function click($event) {
+          $event.preventDefault();
+          return _vm.changeEditPersonId(null);
+        }
+      }
+    }, [_vm._v("Update")])])])];
+  })], 2)])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Age")]), _vm._v(" "), _c("th", [_vm._v("Job")])])]);
+  return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Age")]), _vm._v(" "), _c("th", [_vm._v("Job")]), _vm._v(" "), _c("th", [_vm._v("Edit")])])]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("td", [_c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("td", [_c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "number"
+    }
+  })]);
+}, function () {
+  var _vm = this,
+    _c = _vm._self._c;
+  return _c("td", [_c("input", {
+    staticClass: "form-control",
+    attrs: {
+      type: "text"
+    }
+  })]);
 }];
 render._withStripped = true;
 
