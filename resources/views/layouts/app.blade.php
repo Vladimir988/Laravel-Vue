@@ -21,9 +21,11 @@
 </head>
 <body>
 <div id="app">
-{{--    <post-component></post-component>--}}
+    <post-component></post-component>
 {{--    <single-component></single-component>--}}
-    <create-component></create-component>
+{{--    <create-component></create-component>--}}
+
+
 {{--    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">--}}
 {{--        <div class="container">--}}
 {{--            <a class="navbar-brand" href="{{ url('/') }}">--}}
