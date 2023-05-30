@@ -1,15 +1,11 @@
 import Vue from 'vue';
-import PostComponent from "./components/PostComponent";
-import SingleComponent from "./components/SingleComponent";
-import CreateComponent from "./components/CreateComponent";
+import MainComponent from "./components/MainComponent";
 
 require('./bootstrap');
 
 const app = new Vue({
     el: '#app',
     components: {
-        PostComponent,
-        SingleComponent,
-        CreateComponent,
+        MainComponent,
     }
 });

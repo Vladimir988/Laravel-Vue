@@ -1,7 +1,6 @@
 <template>
     <div class="container mt-5">
-        <h2>Index Component</h2>
-
+        <h2>Persons</h2>
         <table class="table mt-5">
             <thead>
                 <tr>
@@ -9,7 +8,7 @@
                     <th class="th-w-20">Name</th>
                     <th class="th-w-20">Age</th>
                     <th class="th-w-20">Job</th>
-                    <th class="th-w-20">Edit</th>
+                    <th class="th-w-20">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,14 +18,17 @@
                         <td>{{ person.name }}</td>
                         <td>{{ person.age }}</td>
                         <td>{{ person.job }}</td>
-                        <td><a href="#" @click.prevent="changeEditPersonId(person)" class="btn btn-success">Edit</a></td>
+                        <td>
+                            <a href="#" @click.prevent="changeEditPersonId(person)" class="btn btn-outline-success btn-sm">Edit</a>
+                            <a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-outline-danger btn-sm">Delete</a>
+                        </td>
                     </tr>
                     <tr :class="isEdit(person.id) ? '' : 'd-none'">
                         <th>{{ person.id }}</th>
                         <td><input type="text" v-model="name" class="form-control"></td>
                         <td><input type="number" v-model="age" class="form-control"></td>
                         <td><input type="text" v-model="job" class="form-control"></td>
-                        <td><a href="#" @click.prevent="updateperson(person.id)" class="btn btn-success">Update</a></td>
+                        <td><a href="#" @click.prevent="updateperson(person.id)" class="btn btn-outline-success btn-sm">Update</a></td>
                     </tr>
                 </template>
             </tbody>
@@ -69,6 +71,14 @@ export default {
                 age: this.age,
                 job: this.job,
             })
+            .then(responce => {
+                if(responce.status === 200) {
+                    this.getPeople();
+                }
+            });
+        },
+        deletePerson(id) {
+            axios.delete(`/api/people/${id}`)
             .then(responce => {
                 if(responce.status === 200) {
                     this.getPeople();
