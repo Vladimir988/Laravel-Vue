@@ -84,10 +84,14 @@ export default {
                     this.getPeople();
                 }
             });
+        },
+        indexLog() {
+            console.log('this is ===INDEX=== component');
         }
     },
     mounted() {
         this.getPeople();
+        // this.$parent.parentLog();
     }
 }
 </script>

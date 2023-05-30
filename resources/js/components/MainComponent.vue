@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <CreateComponent></CreateComponent>
-        <IndexComponent></IndexComponent>
+        <IndexComponent ref="index"></IndexComponent>
     </div>
 </template>
 
@@ -20,8 +20,8 @@ export default {
         }
     },
     methods: {
-        getPersons() {
-            //
+        parentLog() {
+            console.log('this is ===PARENT=== component');
         }
     },
     computed: {
@@ -35,7 +35,7 @@ export default {
         }
     },
     mounted() {
-        //
+        // this.$refs.index.indexLog();
     }
 }
 </script>

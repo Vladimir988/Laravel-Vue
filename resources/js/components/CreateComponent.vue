@@ -13,12 +13,17 @@
         <div class="mb-3">
             <input @click.prevent="addPerson" class="btn btn-primary" value="Add person">
         </div>
+        <InnerComponent></InnerComponent>
     </div>
 </template>
 
 <script>
+import InnerComponent from "./InnerComponent";
 export default {
     name: 'CreateComponent',
+    components: {
+        InnerComponent
+    },
     data() {
         return {
             name: null,
@@ -39,6 +44,9 @@ export default {
                 this.job = null
             });
         }
+    },
+    mounted() {
+        // this.$parent.$refs.index.indexLog();
     }
 }
 </script>
