@@ -14,19 +14,19 @@
             </thead>
             <tbody>
                 <template v-for="person in people"> <!-- v-if="person.age > 20" --> <!-- personAgeFilter -->
-                    <tr>
+                    <tr :class="isEdit(person.id) ? 'd-none' : ''">
                         <th>{{ person.id }}</th>
                         <td>{{ person.name }}</td>
                         <td>{{ person.age }}</td>
                         <td>{{ person.job }}</td>
-                        <td><a href="#" @click.prevent="changeEditPersonId(person.id)" class="btn btn-success">Edit</a></td>
+                        <td><a href="#" @click.prevent="changeEditPersonId(person)" class="btn btn-success">Edit</a></td>
                     </tr>
                     <tr :class="isEdit(person.id) ? '' : 'd-none'">
                         <th></th>
-                        <td><input type="text" class="form-control"></td> <!-- value="{{ person.name }}" -->
-                        <td><input type="number" class="form-control"></td> <!-- value="{{ person.age }}" -->
-                        <td><input type="text" class="form-control"></td> <!-- value="{{ person.job }}" -->
-                        <td><a href="#" @click.prevent="changeEditPersonId(null)" class="btn btn-success">Update</a></td>
+                        <td><input type="text" v-model="name" class="form-control"></td>
+                        <td><input type="number" v-model="age" class="form-control"></td>
+                        <td><input type="text" v-model="job" class="form-control"></td>
+                        <td><a href="#" @click.prevent="updateperson(person.id)" class="btn btn-success">Update</a></td>
                     </tr>
                 </template>
             </tbody>
@@ -40,23 +40,40 @@ export default {
     data() {
         return {
             people: null,
-            editPersonId: null
+            editPersonId: null,
+            name: '',
+            age: null,
+            job: ''
         };
     },
     methods: {
         getPeople() {
-            axios.get('/api/people', {
-
-            })
+            axios.get('/api/people')
             .then(responce => {
                 this.people = responce.data
             });
         },
-        changeEditPersonId(id) {
-            this.editPersonId = id;
+        changeEditPersonId(person) {
+            this.editPersonId = person.id;
+            this.name = person.name;
+            this.age = person.age;
+            this.job = person.job;
         },
         isEdit(id) {
             return this.editPersonId === id;
+        },
+        updateperson(id) {
+            this.editPersonId = null;
+            axios.patch(`/api/people/${id}`, {
+                name: this.name,
+                age: this.age,
+                job: this.job,
+            })
+            .then(responce => {
+                if(responce.status === 200) {
+                    this.getPeople();
+                }
+            });
         }
     },
     mounted() {

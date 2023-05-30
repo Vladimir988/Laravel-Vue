@@ -5355,21 +5355,40 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       people: null,
-      editPersonId: null
+      editPersonId: null,
+      name: '',
+      age: null,
+      job: ''
     };
   },
   methods: {
     getPeople: function getPeople() {
       var _this = this;
-      axios.get('/api/people', {}).then(function (responce) {
+      axios.get('/api/people').then(function (responce) {
         _this.people = responce.data;
       });
     },
-    changeEditPersonId: function changeEditPersonId(id) {
-      this.editPersonId = id;
+    changeEditPersonId: function changeEditPersonId(person) {
+      this.editPersonId = person.id;
+      this.name = person.name;
+      this.age = person.age;
+      this.job = person.job;
     },
     isEdit: function isEdit(id) {
       return this.editPersonId === id;
+    },
+    updateperson: function updateperson(id) {
+      var _this2 = this;
+      this.editPersonId = null;
+      axios.patch("/api/people/".concat(id), {
+        name: this.name,
+        age: this.age,
+        job: this.job
+      }).then(function (responce) {
+        if (responce.status === 200) {
+          _this2.getPeople();
+        }
+      });
     }
   },
   mounted: function mounted() {
@@ -5590,7 +5609,9 @@ var render = function render() {
   }, [_c("h2", [_vm._v("Index Component")]), _vm._v(" "), _c("table", {
     staticClass: "table mt-5"
   }, [_vm._m(0), _vm._v(" "), _c("tbody", [_vm._l(_vm.people, function (person) {
-    return [_c("tr", [_c("th", [_vm._v(_vm._s(person.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.age))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.job))]), _vm._v(" "), _c("td", [_c("a", {
+    return [_c("tr", {
+      "class": _vm.isEdit(person.id) ? "d-none" : ""
+    }, [_c("th", [_vm._v(_vm._s(person.id))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.name))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.age))]), _vm._v(" "), _c("td", [_vm._v(_vm._s(person.job))]), _vm._v(" "), _c("td", [_c("a", {
       staticClass: "btn btn-success",
       attrs: {
         href: "#"
@@ -5598,12 +5619,72 @@ var render = function render() {
       on: {
         click: function click($event) {
           $event.preventDefault();
-          return _vm.changeEditPersonId(person.id);
+          return _vm.changeEditPersonId(person);
         }
       }
     }, [_vm._v("Edit")])])]), _vm._v(" "), _c("tr", {
       "class": _vm.isEdit(person.id) ? "" : "d-none"
-    }, [_c("th"), _vm._v(" "), _vm._m(1, true), _vm._v(" "), _vm._m(2, true), _vm._v(" "), _vm._m(3, true), _vm._v(" "), _c("td", [_c("a", {
+    }, [_c("th"), _vm._v(" "), _c("td", [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: _vm.name,
+        expression: "name"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text"
+      },
+      domProps: {
+        value: _vm.name
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.name = $event.target.value;
+        }
+      }
+    })]), _vm._v(" "), _c("td", [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: _vm.age,
+        expression: "age"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "number"
+      },
+      domProps: {
+        value: _vm.age
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.age = $event.target.value;
+        }
+      }
+    })]), _vm._v(" "), _c("td", [_c("input", {
+      directives: [{
+        name: "model",
+        rawName: "v-model",
+        value: _vm.job,
+        expression: "job"
+      }],
+      staticClass: "form-control",
+      attrs: {
+        type: "text"
+      },
+      domProps: {
+        value: _vm.job
+      },
+      on: {
+        input: function input($event) {
+          if ($event.target.composing) return;
+          _vm.job = $event.target.value;
+        }
+      }
+    })]), _vm._v(" "), _c("td", [_c("a", {
       staticClass: "btn btn-success",
       attrs: {
         href: "#"
@@ -5611,7 +5692,7 @@ var render = function render() {
       on: {
         click: function click($event) {
           $event.preventDefault();
-          return _vm.changeEditPersonId(null);
+          return _vm.updateperson(person.id);
         }
       }
     }, [_vm._v("Update")])])])];
@@ -5621,33 +5702,6 @@ var staticRenderFns = [function () {
   var _vm = this,
     _c = _vm._self._c;
   return _c("thead", [_c("tr", [_c("th"), _vm._v(" "), _c("th", [_vm._v("Name")]), _vm._v(" "), _c("th", [_vm._v("Age")]), _vm._v(" "), _c("th", [_vm._v("Job")]), _vm._v(" "), _c("th", [_vm._v("Edit")])])]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("td", [_c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("td", [_c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "number"
-    }
-  })]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("td", [_c("input", {
-    staticClass: "form-control",
-    attrs: {
-      type: "text"
-    }
-  })]);
 }];
 render._withStripped = true;
 
