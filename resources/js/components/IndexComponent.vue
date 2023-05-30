@@ -5,11 +5,11 @@
         <table class="table mt-5">
             <thead>
                 <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Job</th>
-                    <th>Edit</th>
+                    <th class="th-w-20"></th>
+                    <th class="th-w-20">Name</th>
+                    <th class="th-w-20">Age</th>
+                    <th class="th-w-20">Job</th>
+                    <th class="th-w-20">Edit</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,7 +22,7 @@
                         <td><a href="#" @click.prevent="changeEditPersonId(person)" class="btn btn-success">Edit</a></td>
                     </tr>
                     <tr :class="isEdit(person.id) ? '' : 'd-none'">
-                        <th></th>
+                        <th>{{ person.id }}</th>
                         <td><input type="text" v-model="name" class="form-control"></td>
                         <td><input type="number" v-model="age" class="form-control"></td>
                         <td><input type="text" v-model="job" class="form-control"></td>
@@ -83,5 +83,7 @@ export default {
 </script>
 
 <style scoped>
-
+.th-w-20 {
+    width: 20%;
+}
 </style>
