@@ -28,7 +28,7 @@
                         <td><input type="text" v-model="name" class="form-control"></td>
                         <td><input type="number" v-model="age" class="form-control"></td>
                         <td><input type="text" v-model="job" class="form-control"></td>
-                        <td><a href="#" @click.prevent="updateperson(person.id)" class="btn btn-outline-success btn-sm">Update</a></td>
+                        <td><a href="#" @click.prevent="updatePerson(person.id)" class="btn btn-outline-success btn-sm">Update</a></td>
                     </tr>
                 </template>
             </tbody>
@@ -64,7 +64,7 @@ export default {
         isEdit(id) {
             return this.editPersonId === id;
         },
-        updateperson(id) {
+        updatePerson(id) {
             this.editPersonId = null;
             axios.patch(`/api/people/${id}`, {
                 name: this.name,

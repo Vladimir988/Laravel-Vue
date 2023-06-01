@@ -13,7 +13,8 @@
         <div class="mb-3">
             <input @click.prevent="addPerson" class="btn btn-primary" value="Add person">
         </div>
-        <InnerComponent></InnerComponent>
+<!--        <InnerComponent color="black" number="20" isPublished="true"></InnerComponent>-->
+        <InnerComponent :obj="obj"></InnerComponent>
     </div>
 </template>
 
@@ -29,6 +30,11 @@ export default {
             name: null,
             age: null,
             job: null,
+            obj: {
+                color: 'tomato',
+                number: 50,
+                isPublished: false,
+            }
         };
     },
     methods: {
@@ -39,14 +45,15 @@ export default {
                 job: this.job,
             })
             .then(person => {
-                this.name = null
-                this.age = null
-                this.job = null
+                this.name = null;
+                this.age = null;
+                this.job = null;
+                this.$parent.$refs.index.getPeople();
             });
         }
     },
     mounted() {
-        // this.$parent.$refs.index.indexLog();
+
     }
 }
 </script>

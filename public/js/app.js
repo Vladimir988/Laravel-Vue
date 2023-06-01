@@ -5323,7 +5323,12 @@ __webpack_require__.r(__webpack_exports__);
     return {
       name: null,
       age: null,
-      job: null
+      job: null,
+      obj: {
+        color: 'tomato',
+        number: 50,
+        isPublished: false
+      }
     };
   },
   methods: {
@@ -5337,12 +5342,11 @@ __webpack_require__.r(__webpack_exports__);
         _this.name = null;
         _this.age = null;
         _this.job = null;
+        _this.$parent.$refs.index.getPeople();
       });
     }
   },
-  mounted: function mounted() {
-    // this.$parent.$refs.index.indexLog();
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -5385,7 +5389,7 @@ __webpack_require__.r(__webpack_exports__);
     isEdit: function isEdit(id) {
       return this.editPersonId === id;
     },
-    updateperson: function updateperson(id) {
+    updatePerson: function updatePerson(id) {
       var _this2 = this;
       this.editPersonId = null;
       axios.patch("/api/people/".concat(id), {
@@ -5437,7 +5441,10 @@ __webpack_require__.r(__webpack_exports__);
   methods: {},
   mounted: function mounted() {
     // this.$parent.$parent.parentLog();
-  }
+  },
+  props: [
+  // 'color', 'number', 'isPublished'
+  'obj']
 });
 
 /***/ }),
@@ -5592,7 +5599,11 @@ var render = function render() {
         return _vm.addPerson.apply(null, arguments);
       }
     }
-  })]), _vm._v(" "), _c("InnerComponent")], 1);
+  })]), _vm._v(" "), _c("InnerComponent", {
+    attrs: {
+      obj: _vm.obj
+    }
+  })], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -5714,7 +5725,7 @@ var render = function render() {
       on: {
         click: function click($event) {
           $event.preventDefault();
-          return _vm.updateperson(person.id);
+          return _vm.updatePerson(person.id);
         }
       }
     }, [_vm._v("Update")])])])];
@@ -5755,15 +5766,11 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _vm._m(0);
-};
-var staticRenderFns = [function () {
-  var _vm = this,
-    _c = _vm._self._c;
   return _c("div", {
     staticClass: "container mt-5"
-  }, [_c("h2", [_vm._v("Inner Component")])]);
-}];
+  }, [_c("div", [_vm._v("Color: " + _vm._s(_vm.obj.color))]), _vm._v(" "), _c("div", [_vm._v("Number: " + _vm._s(_vm.obj.number > 10 ? "more 10" : "less 10"))]), _vm._v(" "), _c("div", [_vm._v("Is published: " + _vm._s(_vm.obj.isPublished ? "Published" : "Not published"))])]);
+};
+var staticRenderFns = [];
 render._withStripped = true;
 
 
