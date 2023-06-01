@@ -23,13 +23,7 @@
                             <a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-outline-danger btn-sm">Delete</a>
                         </td>
                     </tr>
-                    <tr :class="isEdit(person.id) ? '' : 'd-none'">
-                        <th>{{ person.id }}</th>
-                        <td><input type="text" v-model="name" class="form-control"></td>
-                        <td><input type="number" v-model="age" class="form-control"></td>
-                        <td><input type="text" v-model="job" class="form-control"></td>
-                        <td><a href="#" @click.prevent="updatePerson(person.id)" class="btn btn-outline-success btn-sm">Update</a></td>
-                    </tr>
+                    <EditComponent :person="person" :ref="`edit_${person.id}`"></EditComponent>
                 </template>
             </tbody>
         </table>
@@ -37,8 +31,12 @@
 </template>
 
 <script>
+import EditComponent from './parts/EditComponent';
 export default {
     name: 'IndexComponent',
+    components: {
+        EditComponent
+    },
     data() {
         return {
             people: null,
@@ -57,25 +55,14 @@ export default {
         },
         changeEditPersonId(person) {
             this.editPersonId = person.id;
-            this.name = person.name;
-            this.age = person.age;
-            this.job = person.job;
+            let editName      = `edit_${person.id}`;
+            let fullEditName  = this.$refs[editName][0];
+            fullEditName.name = person.name;
+            fullEditName.age  = person.age;
+            fullEditName.job  = person.job;
         },
         isEdit(id) {
             return this.editPersonId === id;
-        },
-        updatePerson(id) {
-            this.editPersonId = null;
-            axios.patch(`/api/people/${id}`, {
-                name: this.name,
-                age: this.age,
-                job: this.job,
-            })
-            .then(responce => {
-                if(responce.status === 200) {
-                    this.getPeople();
-                }
-            });
         },
         deletePerson(id) {
             axios.delete(`/api/people/${id}`)
