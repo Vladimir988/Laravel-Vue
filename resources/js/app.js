@@ -1,11 +1,12 @@
 import Vue from 'vue';
-import MainComponent from "./components/MainComponent";
-
+import router from "./router";
+import Index from "./components/Index";
 require('./bootstrap');
 
 const app = new Vue({
     el: '#app',
     components: {
-        MainComponent,
-    }
+        Index
+    },
+    router
 });
