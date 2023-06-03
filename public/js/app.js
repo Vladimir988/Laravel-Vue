@@ -5102,7 +5102,13 @@ var render = function render() {
         name: "person.index"
       }
     }
-  }, [_vm._v("People")]), _vm._v(" "), _c("router-view")], 1);
+  }, [_vm._v("People")]), _vm._v(" "), _c("router-link", {
+    attrs: {
+      to: {
+        name: "person.create"
+      }
+    }
+  }, [_vm._v("Create")]), _vm._v(" "), _c("router-view")], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -5198,6 +5204,12 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
     name: 'person.index',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_Person_Index_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Person/Index */ "./resources/js/components/Person/Index.vue"));
+    }
+  }, {
+    path: '/people/create',
+    name: 'person.create',
+    component: function component() {
+      return __webpack_require__.e(/*! import() */ "resources_js_components_Person_Create_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Person/Create */ "./resources/js/components/Person/Create.vue"));
     }
   }]
 }));
@@ -42499,7 +42511,7 @@ module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBun
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames not based on template
-/******/ 			if (chunkId === "resources_js_components_Person_Index_vue") return "js/" + chunkId + ".js";
+/******/ 			if ({"resources_js_components_Person_Index_vue":1,"resources_js_components_Person_Create_vue":1}[chunkId]) return "js/" + chunkId + ".js";
 /******/ 			// return url for filenames based on template
 /******/ 			return undefined;
 /******/ 		};
