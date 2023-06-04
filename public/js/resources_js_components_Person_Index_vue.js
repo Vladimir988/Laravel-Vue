@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
     getPeople: function getPeople() {
       var _this = this;
       axios.get('/api/people').then(function (response) {
-        _this.people = response.data;
+        _this.people = response.data.data;
       });
     },
     deletePerson: function deletePerson(id) {

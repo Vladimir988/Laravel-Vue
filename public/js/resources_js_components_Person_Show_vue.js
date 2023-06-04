@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
     getPerson: function getPerson() {
       var _this = this;
       axios.get("/api/people/".concat(this.$route.params.id)).then(function (response) {
-        _this.person = response.data;
+        _this.person = response.data.data;
       });
     }
   },

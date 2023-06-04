@@ -11,13 +11,12 @@
             <input type="text" class="form-control" v-model="job" id="job" placeholder="Person job">
         </div>
         <div class="mb-3">
-            <input @click.prevent="store" class="btn btn-outline-success" value="Add person">
+            <input :disabled="!isDisabled" @click.prevent="store" class="btn btn-outline-success" value="Add person">
         </div>
     </div>
 </template>
 
 <script>
-import router from "../../router";
 export default {
     name: "Create",
     data() {
@@ -35,8 +34,13 @@ export default {
                 job: this.job,
             })
             .then(response => {
-                router.push({ name: 'person.index' });
+                this.$router.push({ name: 'person.index' });
             });
+        }
+    },
+    computed: {
+        isDisabled() {
+            return this.name && this.age && this.job;
         }
     }
 }

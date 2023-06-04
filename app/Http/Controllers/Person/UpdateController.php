@@ -10,11 +10,10 @@ class UpdateController extends Controller
 {
     /**
      * Create a new controller instance.
-     *
-     * @return bool
      */
     public function __invoke(UpdateRequest $request, Person $person)
     {
-        return $person->update($request->validated());
+        $person->update($request->validated());
+        return response([]);
     }
 }
