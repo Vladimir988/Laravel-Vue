@@ -18,10 +18,11 @@
                     <td>{{ person.name }}</td>
                     <td>{{ person.age }}</td>
                     <td>{{ person.job }}</td>
-<!--                    <td>-->
+                    <td>
+                        <router-link :to="{ name: 'person.edit', params: { id: person.id } }">Edit</router-link>
 <!--                        <a href="#" @click.prevent="changeEditPersonId(person)" class="btn btn-outline-success btn-sm">Edit</a>-->
 <!--                        <a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-outline-danger btn-sm">Delete</a>-->
-<!--                    </td>-->
+                    </td>
                 </tr>
             </template>
             </tbody>

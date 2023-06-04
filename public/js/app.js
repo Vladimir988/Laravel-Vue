@@ -5218,7 +5218,7 @@ vue__WEBPACK_IMPORTED_MODULE_0__["default"].use(vue_router__WEBPACK_IMPORTED_MOD
       return __webpack_require__.e(/*! import() */ "resources_js_components_Person_Edit_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Person/Edit */ "./resources/js/components/Person/Edit.vue"));
     }
   }, {
-    path: '/people/show',
+    path: '/people/:id',
     name: 'person.show',
     component: function component() {
       return __webpack_require__.e(/*! import() */ "resources_js_components_Person_Show_vue").then(__webpack_require__.bind(__webpack_require__, /*! ./components/Person/Show */ "./resources/js/components/Person/Show.vue"));

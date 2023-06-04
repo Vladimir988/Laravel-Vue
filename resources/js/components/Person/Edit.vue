@@ -44,7 +44,8 @@ export default {
             })
             .then(response => {
                 router.push({
-                    name: 'person.show'
+                    name: 'person.show',
+                    params: { id: this.$route.params.id }
                 });
             });
         }
