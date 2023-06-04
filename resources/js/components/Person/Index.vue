@@ -13,15 +13,14 @@
             </thead>
             <tbody>
             <template v-for="person in people">
-                <tr> <!--:class="this.$parent.isEdit(person.id) ? 'd-none' : ''"-->
+                <tr>
                     <th>{{ person.id }}</th>
-                    <td>{{ person.name }}</td>
+                    <td><router-link :to="{ name: 'person.show', params: { id: person.id } }">{{ person.name }}</router-link></td>
                     <td>{{ person.age }}</td>
                     <td>{{ person.job }}</td>
                     <td>
-                        <router-link :to="{ name: 'person.edit', params: { id: person.id } }">Edit</router-link>
-<!--                        <a href="#" @click.prevent="changeEditPersonId(person)" class="btn btn-outline-success btn-sm">Edit</a>-->
-<!--                        <a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-outline-danger btn-sm">Delete</a>-->
+                        <router-link :to="{ name: 'person.edit', params: { id: person.id } }" class="btn btn-outline-success btn-sm">Edit</router-link>
+                        <a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-outline-danger btn-sm">Delete</a>
                     </td>
                 </tr>
             </template>
@@ -43,6 +42,12 @@ export default {
             axios.get('/api/people')
             .then(response => {
                 this.people = response.data;
+            })
+        },
+        deletePerson(id) {
+            axios.delete(`/api/people/${id}`)
+            .then(response => {
+                this.getPeople();
             })
         }
     },
