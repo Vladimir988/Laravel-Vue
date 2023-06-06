@@ -20,7 +20,7 @@
                     <td>{{ person.job }}</td>
                     <td>
                         <router-link :to="{ name: 'person.edit', params: { id: person.id } }" class="btn btn-outline-success btn-sm">Edit</router-link>
-                        <a href="#" @click.prevent="deletePerson(person.id)" class="btn btn-outline-danger btn-sm">Delete</a>
+                        <a href="#" @click.prevent="$store.dispatch('deletePerson' ,person.id)" class="btn btn-outline-danger btn-sm">Delete</a>
                     </td>
                 </tr>
             </template>
@@ -32,27 +32,13 @@
 <script>
 export default {
     name: "Index",
-    data() {
-        return {
-            people: null
-        }
-    },
-    methods: {
-        getPeople() {
-            axios.get('/api/people')
-            .then(response => {
-                this.people = response.data.data;
-            })
-        },
-        deletePerson(id) {
-            axios.delete(`/api/people/${id}`)
-            .then(response => {
-                this.getPeople();
-            })
-        }
-    },
     mounted() {
-        this.getPeople();
+        this.$store.dispatch('getPeople');
+    },
+    computed: {
+        people() {
+            return this.$store.getters.people;
+        }
     }
 }
 </script>

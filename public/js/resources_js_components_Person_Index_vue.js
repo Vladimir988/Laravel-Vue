@@ -13,27 +13,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Index",
-  data: function data() {
-    return {
-      people: null
-    };
-  },
-  methods: {
-    getPeople: function getPeople() {
-      var _this = this;
-      axios.get('/api/people').then(function (response) {
-        _this.people = response.data.data;
-      });
-    },
-    deletePerson: function deletePerson(id) {
-      var _this2 = this;
-      axios["delete"]("/api/people/".concat(id)).then(function (response) {
-        _this2.getPeople();
-      });
-    }
-  },
   mounted: function mounted() {
-    this.getPeople();
+    this.$store.dispatch('getPeople');
+  },
+  computed: {
+    people: function people() {
+      return this.$store.getters.people;
+    }
   }
 });
 
@@ -85,7 +71,7 @@ var render = function render() {
       on: {
         click: function click($event) {
           $event.preventDefault();
-          return _vm.deletePerson(person.id);
+          return _vm.$store.dispatch("deletePerson", person.id);
         }
       }
     }, [_vm._v("Delete")])], 1)])];
