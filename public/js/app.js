@@ -5268,6 +5268,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _router__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../router */ "./resources/js/router.js");
+function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); }
+
 var state = {
   person: null,
   people: null
@@ -5299,6 +5302,21 @@ var actions = {
     var dispatch = _ref3.dispatch;
     axios["delete"]("/api/people/".concat(id)).then(function (response) {
       dispatch('getPeople');
+    });
+  },
+  update: function update(_ref4, data) {
+    _objectDestructuringEmpty(_ref4);
+    axios.patch("/api/people/".concat(data.person.id), {
+      name: data.person.name,
+      age: data.person.age,
+      job: data.person.job
+    }).then(function (response) {
+      _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+        name: 'person.show',
+        params: {
+          id: data.person.id
+        }
+      });
     });
   }
 };

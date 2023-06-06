@@ -20,7 +20,7 @@
                     <td>{{ person.job }}</td>
                     <td>
                         <router-link :to="{ name: 'person.edit', params: { id: person.id } }" class="btn btn-outline-success btn-sm">Edit</router-link>
-                        <a href="#" @click.prevent="$store.dispatch('deletePerson' ,person.id)" class="btn btn-outline-danger btn-sm">Delete</a>
+                        <a href="#" @click.prevent="$store.dispatch('deletePerson', person.id)" class="btn btn-outline-danger btn-sm">Delete</a>
                     </td>
                 </tr>
             </template>
