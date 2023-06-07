@@ -17,18 +17,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     name: "Edit",
     mounted() {
         this.$store.dispatch('getPerson', this.$route.params.id);
     },
     computed: {
-        isDisabled() {
-            return this.$store.getters.isDisabled;
-        },
-        person() {
-            return this.$store.getters.person;
-        }
+        ...mapGetters({
+            isDisabled: 'isDisabled',
+            person: 'person',
+        })
     }
 }
 </script>

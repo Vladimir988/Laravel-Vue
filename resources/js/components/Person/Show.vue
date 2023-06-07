@@ -17,15 +17,17 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
     name: "Show",
     mounted() {
         this.$store.dispatch('getPerson', this.$route.params.id);
     },
     computed: {
-        person() {
-            return this.$store.getters.person;
-        }
+        ...mapGetters({
+            person: 'person',
+        })
     }
 }
 </script>

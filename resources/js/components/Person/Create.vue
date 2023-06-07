@@ -17,18 +17,18 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
+
 export default {
     name: "Create",
     mounted() {
         this.$store.commit('setPerson', {name: null, age: null, job: null});
     },
     computed: {
-        isDisabled() {
-            return this.$store.getters.isDisabled;
-        },
-        person() {
-            return this.$store.getters.person;
-        }
+        ...mapGetters({
+            isDisabled: 'isDisabled',
+            person: 'person',
+        })
     }
 }
 </script>

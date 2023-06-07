@@ -30,15 +30,17 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
     name: "Index",
     mounted() {
         this.$store.dispatch('getPeople');
     },
     computed: {
-        people() {
-            return this.$store.getters.people;
-        }
+        ...mapGetters({
+            people: 'people',
+        })
     }
 }
 </script>

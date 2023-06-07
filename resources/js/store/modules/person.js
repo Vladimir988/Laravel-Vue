@@ -10,8 +10,8 @@ const state = {
 };
 
 const getters = {
-    person: () => state.person,
-    people: () => state.people,
+    person: ()     => state.person,
+    people: ()     => state.people,
     isDisabled: () => state.person.name && state.person.age && state.person.job,
 };
 
