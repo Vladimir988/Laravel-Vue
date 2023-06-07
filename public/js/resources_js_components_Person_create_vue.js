@@ -13,30 +13,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Create",
-  data: function data() {
-    return {
+  mounted: function mounted() {
+    this.$store.commit('setPerson', {
       name: null,
       age: null,
       job: null
-    };
-  },
-  methods: {
-    store: function store() {
-      var _this = this;
-      axios.post('/api/people', {
-        name: this.name,
-        age: this.age,
-        job: this.job
-      }).then(function (response) {
-        _this.$router.push({
-          name: 'person.index'
-        });
-      });
-    }
+    });
   },
   computed: {
     isDisabled: function isDisabled() {
       return this.name && this.age && this.job;
+    },
+    person: function person() {
+      return this.$store.getters.person;
     }
   }
 });
@@ -65,8 +54,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.name,
-      expression: "name"
+      value: _vm.person.name,
+      expression: "person.name"
     }],
     staticClass: "form-control",
     attrs: {
@@ -75,12 +64,12 @@ var render = function render() {
       placeholder: "Person name"
     },
     domProps: {
-      value: _vm.name
+      value: _vm.person.name
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.name = $event.target.value;
+        _vm.$set(_vm.person, "name", $event.target.value);
       }
     }
   })]), _vm._v(" "), _c("div", {
@@ -89,8 +78,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.age,
-      expression: "age"
+      value: _vm.person.age,
+      expression: "person.age"
     }],
     staticClass: "form-control",
     attrs: {
@@ -99,12 +88,12 @@ var render = function render() {
       placeholder: "Person age"
     },
     domProps: {
-      value: _vm.age
+      value: _vm.person.age
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.age = $event.target.value;
+        _vm.$set(_vm.person, "age", $event.target.value);
       }
     }
   })]), _vm._v(" "), _c("div", {
@@ -113,8 +102,8 @@ var render = function render() {
     directives: [{
       name: "model",
       rawName: "v-model",
-      value: _vm.job,
-      expression: "job"
+      value: _vm.person.job,
+      expression: "person.job"
     }],
     staticClass: "form-control",
     attrs: {
@@ -123,12 +112,12 @@ var render = function render() {
       placeholder: "Person job"
     },
     domProps: {
-      value: _vm.job
+      value: _vm.person.job
     },
     on: {
       input: function input($event) {
         if ($event.target.composing) return;
-        _vm.job = $event.target.value;
+        _vm.$set(_vm.person, "job", $event.target.value);
       }
     }
   })]), _vm._v(" "), _c("div", {
@@ -142,7 +131,11 @@ var render = function render() {
     on: {
       click: function click($event) {
         $event.preventDefault();
-        return _vm.store.apply(null, arguments);
+        return _vm.$store.dispatch("store", {
+          name: _vm.person.name,
+          age: _vm.person.age,
+          job: _vm.person.job
+        });
       }
     }
   })])]);

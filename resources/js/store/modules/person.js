@@ -1,7 +1,11 @@
 import router from "../../router";
 
 const state = {
-    person: null,
+    person: {
+        name: null,
+        age: null,
+        job: null,
+    },
     people: null,
 };
 
@@ -40,6 +44,16 @@ const actions = {
                 name: 'person.show',
                 params: { id: data.person.id }
             });
+        });
+    },
+    store({}, data) {
+        axios.post('/api/people', {
+            name: data.name,
+            age: data.age,
+            job: data.job,
+        })
+        .then(response => {
+            router.push({ name: 'person.index' });
         });
     }
 };

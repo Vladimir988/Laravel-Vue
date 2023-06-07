@@ -5272,7 +5272,11 @@ __webpack_require__.r(__webpack_exports__);
 function _objectDestructuringEmpty(obj) { if (obj == null) throw new TypeError("Cannot destructure " + obj); }
 
 var state = {
-  person: null,
+  person: {
+    name: null,
+    age: null,
+    job: null
+  },
   people: null
 };
 var getters = {
@@ -5316,6 +5320,18 @@ var actions = {
         params: {
           id: data.person.id
         }
+      });
+    });
+  },
+  store: function store(_ref5, data) {
+    _objectDestructuringEmpty(_ref5);
+    axios.post('/api/people', {
+      name: data.name,
+      age: data.age,
+      job: data.job
+    }).then(function (response) {
+      _router__WEBPACK_IMPORTED_MODULE_0__["default"].push({
+        name: 'person.index'
       });
     });
   }
