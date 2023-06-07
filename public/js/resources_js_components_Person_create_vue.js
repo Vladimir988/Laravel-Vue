@@ -22,7 +22,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     isDisabled: function isDisabled() {
-      return this.name && this.age && this.job;
+      return this.$store.getters.isDisabled;
     },
     person: function person() {
       return this.$store.getters.person;

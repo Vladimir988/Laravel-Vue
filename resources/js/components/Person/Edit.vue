@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
 export default {
     name: "Edit",
     mounted() {
@@ -25,7 +24,7 @@ export default {
     },
     computed: {
         isDisabled() {
-            return this.person.name && this.person.age && this.person.job;
+            return this.$store.getters.isDisabled;
         },
         person() {
             return this.$store.getters.person;

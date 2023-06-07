@@ -24,7 +24,7 @@ export default {
     },
     computed: {
         isDisabled() {
-            return this.name && this.age && this.job;
+            return this.$store.getters.isDisabled;
         },
         person() {
             return this.$store.getters.person;

@@ -5285,6 +5285,9 @@ var getters = {
   },
   people: function people() {
     return state.people;
+  },
+  isDisabled: function isDisabled() {
+    return state.person.name && state.person.age && state.person.job;
   }
 };
 var actions = {
